@@ -2,16 +2,6 @@ import React from 'react';
 import Week from './Week';
 import { format } from 'date-fns';
 
-// const weekDayMap = new Map([
-//   ['Sunday', 0],
-//   ['Monday', 1],
-//   ['Tuesday', 2],
-//   ['Wednesday', 3],
-//   ['Thursday', 4],
-//   ['Friday', 5],
-//   ['Saturday', 6],
-// ]);
-
 const Weeks = (props) => {
   const { numberOfWeeks, selectDate, monthDays, weekStructure } = props;
   const weekDayMap = new Map();
@@ -23,7 +13,6 @@ const Weeks = (props) => {
   }
 
   const renderWeeks = (weeksArray, renderType) => {
-    // console.log(weeksArray);
     return (
       <>
         {weeksArray.map((week, index) => (
@@ -71,34 +60,11 @@ const Weeks = (props) => {
       weeksArray[i] = weekArray;
       monthDaysCopy = monthDaysCopy.splice(deleteCount);
     }
-
     
     return weeksArray;
-
-    // return Array(numberOfWeeks)
-    // .fill(0)
-    // .map((week, index) => (
-    //   <Week
-    //     key={index}
-    //     weekDataType='daysOfMonth'
-    //     selectDate={selectDate}
-    //     weekStart={startingDate}
-    //     weekEnd={endingDate}
-    //   />
-    // ));
+    
   };
 
-  // const weeksToRender = Array(numberOfWeeks)
-  //   .fill(0)
-  //   .map((week, index) => (
-  //     <Week
-  //       key={index}
-  //       weekDataType='daysOfMonth'
-  //       selectDate={selectDate}
-  //       weekStart={startOfWeeks}
-  //       weekEnd={endOfWeeks}
-  //     />
-  //   ));
   return (
     <section>
       {renderWeeks([weekStructure], 'daysOfWeek')}

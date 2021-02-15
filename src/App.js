@@ -18,11 +18,6 @@ const WEEKS_IN_MONTH = getWeeksInMonth(startingDate, {
   weekStartsOn: STARTING_DAY,
 });
 
-// const fullCurrentMonth = eachDayOfInterval({
-//   start: startOfCurrentMonth,
-//   end: endOfCurrentMonth,
-// });
-
 const startWeeksofMonth = eachWeekOfInterval(
   { start: startOfMonth(startingDate), end: endOfMonth(startingDate) },
   { weekStartsOn: STARTING_DAY }
@@ -34,13 +29,13 @@ const endWeeksofMonth = eachWeekendOfInterval(
 
 const extendedMonth = eachDayOfInterval({
   start: startWeeksofMonth[0],
-  end: endWeeksofMonth[endWeeksofMonth.length-1],
+  end: endWeeksofMonth[endWeeksofMonth.length - 1],
 });
 
 const weekStructure = eachDayOfInterval({
   start: extendedMonth[0],
   end: extendedMonth[6],
-}).map(day => format(day, 'EEEE'))
+}).map((day) => format(day, 'EEEE'));
 
 class App extends Component {
   constructor(props) {
@@ -50,14 +45,15 @@ class App extends Component {
       currentMonth: extendedMonth.map((day) => ({
         day: day,
         isSelected: format(startingDate, 'd M') === format(day, 'd M'),
-        isSelectedMonthName: format(startingDate, 'MMMM') === format(day, 'MMMM'),
+        isSelectedMonthName:
+          format(startingDate, 'MMMM') === format(day, 'MMMM'),
       })),
     };
   }
-  
-  updateCurrentMonth = (month) =>{
-    this.setState({currentMonth: month});
-  }
+
+  updateCurrentMonth = (month) => {
+    this.setState({ currentMonth: month });
+  };
   selectDate = (id) => {
     const { currentMonth } = this.state;
 
@@ -79,9 +75,6 @@ class App extends Component {
   };
 
   render() {
-    // this.updateCurrentMonth();
-    // console.log(this.state.currentMonth);
-    // console.log(STARTING_DAY,weekStructure);
     const { selectedDate, currentMonth } = this.state;
     return (
       <>

@@ -13,7 +13,6 @@ const CurrentMonthCard = (props) => {
     selectDate,
   } = props;
 
-  // console.log(monthDays)
   return (
     <div className='current-month-card'>
       <CurrentMonth
