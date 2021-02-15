@@ -8,10 +8,21 @@ const Week = (props) => {
 
   const renderWeek = (typeOfRender, weekData = undefined) => {
     // console.log('weekData', weekData);
-    if (typeOfRender === 'dayOfWeek') {
+    if (typeOfRender === 'daysOfWeek') {
       return (
         <>
-          <Day className='week-day' isRendered={true}>
+          {weekData.map((day) => (
+          <Day
+            key={day} 
+            className='week-day'
+            isRendered={true}
+            id={day}
+          >
+            {day.charAt(0)}
+          </Day>
+        ))}
+
+          {/* <Day className='week-day' isRendered={true}>
             S
           </Day>
           <Day className='week-day' isRendered={true}>
@@ -31,7 +42,7 @@ const Week = (props) => {
           </Day>
           <Day className='week-day' isRendered={true}>
             S
-          </Day>
+          </Day> */}
         </>
       );
     }
@@ -43,11 +54,12 @@ const Week = (props) => {
       <>
         {weekData.map((day, index) => (
           <Day
-            key={index} 
-            className='month-day'
+            key={day === null ? `Null${index}` :format(day.day,'dMMM') } 
+            isSelected={day === null ? false : day.isSelected}
+            className={`month-day${day !== null && day.isSelected? ' day-selected' : ''}`}
             isRendered={day === null ? false : true}
             selectDate={selectDate}
-            isSelected={day === null ? false : day.isSelected}
+            id={day === null? undefined:format(day.day,'d MMMM')}
           >
             {day === null? ' ':format(day.day,'d')}
           </Day>
@@ -79,9 +91,10 @@ const Week = (props) => {
 
   return (
     <div className='week-container'>
-      {weekDataType === 'daysOfWeek'
-        ? renderWeek('dayOfWeek')
-        : renderWeek('dayOfMonth', weekData)}
+      {/* {weekDataType === 'daysOfWeek'
+        ? renderWeek('daysOfWeek', weekData)
+        : renderWeek('dayOfMonth', weekData)} */}
+        {renderWeek(weekDataType, weekData)}
     </div>
   );
 };

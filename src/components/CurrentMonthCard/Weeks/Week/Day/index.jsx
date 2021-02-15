@@ -12,17 +12,17 @@ class Day extends Component {
 
   selectDay(e) {
     const{selectDate} = this.props;
-    const { textContent } = e.target;
-    selectDate(textContent);
+    const { id } = e.target;
+    selectDate(id);
   }
 
   render() {
-    const { children, className } = this.props;
+    const { children, className ,id} = this.props;
     const { isRendered } = this.state;
     return (
       <p
         className={isRendered ? className : 'transparent'}
-        id={children}
+        id={id}
         onClick={
           isRendered && className === 'month-day' ? this.selectDay : undefined
         }

@@ -2,17 +2,15 @@ import React from 'react';
 import CurrentMonth from './CurrentMonth';
 import Weeks from './Weeks';
 import './CurrentMonthCard.css';
-import { format, startOfMonth, endOfMonth } from 'date-fns';
+import { format } from 'date-fns';
 
 const CurrentMonthCard = (props) => {
   const {
     date,
     numberOfWeeks,
-    startingDayConst,
+    weekStructure,
     monthDays,
     selectDate,
-    startOfWeeks,
-    endOfWeeks
   } = props;
 
   // console.log(monthDays)
@@ -25,12 +23,10 @@ const CurrentMonthCard = (props) => {
         }}
       />
       <Weeks
-        startingDayConst={startingDayConst}
+        weekStructure={weekStructure}
         numberOfWeeks={numberOfWeeks}
         monthDays={monthDays}
         selectDate={selectDate}
-        startOfWeeks={startOfWeeks}
-        endOfWeeks={endOfWeeks}
       />
     </div>
   );

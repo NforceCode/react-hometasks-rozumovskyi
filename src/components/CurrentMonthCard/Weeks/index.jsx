@@ -1,45 +1,50 @@
 import React from 'react';
 import Week from './Week';
-import { lastDayOfWeek, format } from 'date-fns';
+import { format } from 'date-fns';
 
-const weekDayMap = new Map([
-  ['Sunday', 0],
-  ['Monday', 1],
-  ['Tuesday', 2],
-  ['Wednesday', 3],
-  ['Thursday', 4],
-  ['Friday', 5],
-  ['Saturday', 6],
-]);
+// const weekDayMap = new Map([
+//   ['Sunday', 0],
+//   ['Monday', 1],
+//   ['Tuesday', 2],
+//   ['Wednesday', 3],
+//   ['Thursday', 4],
+//   ['Friday', 5],
+//   ['Saturday', 6],
+// ]);
 
 const Weeks = (props) => {
-  const {
-    numberOfWeeks,
-    startingDayConst,
-    selectDate,
-    startOfWeeks,
-    endOfWeeks,
-    monthDays,
-  } = props;
+  const { numberOfWeeks, selectDate, monthDays, weekStructure } = props;
+  const weekDayMap = new Map();
+  for (let i = 0; i < weekStructure.length; i++) {
+    if (weekDayMap.get(weekStructure[i])) {
+      continue;
+    }
+    weekDayMap.set(weekStructure[i], i);
+  }
 
-  const renderWeeks = (weeksArray) => {
+  const renderWeeks = (weeksArray, renderType) => {
     // console.log(weeksArray);
     return (
       <>
-        {weeksArray.map((week, index) => (<Week weekData={week} key={index} weekDataType='daysOfMonth' selectDate={selectDate}/>))}
+        {weeksArray.map((week, index) => (
+          <Week
+            weekData={week}
+            key={index}
+            weekDataType={renderType}
+            selectDate={renderType === 'daysOfMonth' ? selectDate : undefined}
+          />
+        ))}
       </>
-    )
+    );
   };
 
   const getWeeksArray = (
     numberOfWeeks,
-    monthDays
+    monthDays,
   ) => {
     let monthDaysCopy = [...monthDays];
 
     const weeksArray = Array(numberOfWeeks);
-
-    //TODO Fix Map when STARTING_DAY !== 0
 
     for (let i = 0; i < numberOfWeeks; i++) {
       //для недель
@@ -47,13 +52,10 @@ const Weeks = (props) => {
       let deleteCount = 0;
 
       for (let j = 0; j < 7; j++) {
-        // console.log(monthDaysCopy[j]);
-        if(monthDaysCopy[j]){
-          // для дней недели
+        if(monthDaysCopy[j]) {
+        // для дней недели
           const currentWeekDay = format(monthDaysCopy[j].day, 'EEEE');
-          // console.log(weekDayMap.has(currentWeekDay) &&
-          // weekDayMap.get(currentWeekDay) === j &&
-          // monthDaysCopy[j].isSelectedMonthName);
+
           if (
             weekDayMap.has(currentWeekDay) &&
             weekDayMap.get(currentWeekDay) === j &&
@@ -63,12 +65,14 @@ const Weeks = (props) => {
           }
           deleteCount++;
         }
+
       }
-      
+
       weeksArray[i] = weekArray;
       monthDaysCopy = monthDaysCopy.splice(deleteCount);
     }
 
+    
     return weeksArray;
 
     // return Array(numberOfWeeks)
@@ -84,26 +88,21 @@ const Weeks = (props) => {
     // ));
   };
 
-  const weeksToRender = Array(numberOfWeeks)
-    .fill(0)
-    .map((week, index) => (
-      <Week
-        key={index}
-        weekDataType='daysOfMonth'
-        selectDate={selectDate}
-        weekStart={startOfWeeks}
-        weekEnd={endOfWeeks}
-      />
-    ));
+  // const weeksToRender = Array(numberOfWeeks)
+  //   .fill(0)
+  //   .map((week, index) => (
+  //     <Week
+  //       key={index}
+  //       weekDataType='daysOfMonth'
+  //       selectDate={selectDate}
+  //       weekStart={startOfWeeks}
+  //       weekEnd={endOfWeeks}
+  //     />
+  //   ));
   return (
     <section>
-      <Week weekDataType='daysOfWeek' startingDayConst={startingDayConst} />
-      {/* {weeksToRender} */}
-      {renderWeeks(getWeeksArray(
-        numberOfWeeks,
-        monthDays
-      ))}
-      
+      {renderWeeks([weekStructure], 'daysOfWeek')}
+      {renderWeeks(getWeeksArray(numberOfWeeks, monthDays), 'daysOfMonth')}
     </section>
   );
 };

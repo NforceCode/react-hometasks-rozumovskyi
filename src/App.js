@@ -14,24 +14,21 @@ import {
 
 const startingDate = new Date();
 const STARTING_DAY = 0;
-
-const startOfCurrentMonth = startOfMonth(startingDate);
-const endOfCurrentMonth = endOfMonth(startingDate);
-const weeksInMonth = getWeeksInMonth(startingDate, {
+const WEEKS_IN_MONTH = getWeeksInMonth(startingDate, {
   weekStartsOn: STARTING_DAY,
 });
 
-const fullCurrentMonth = eachDayOfInterval({
-  start: startOfCurrentMonth,
-  end: endOfCurrentMonth,
-});
+// const fullCurrentMonth = eachDayOfInterval({
+//   start: startOfCurrentMonth,
+//   end: endOfCurrentMonth,
+// });
 
 const startWeeksofMonth = eachWeekOfInterval(
-  { start: startOfCurrentMonth, end: endOfCurrentMonth },
+  { start: startOfMonth(startingDate), end: endOfMonth(startingDate) },
   { weekStartsOn: STARTING_DAY }
 );
 const endWeeksofMonth = eachWeekendOfInterval(
-  { start: startOfCurrentMonth, end: endOfCurrentMonth },
+  { start: startOfMonth(startingDate), end: endOfMonth(startingDate) },
   { weekStartsOn: STARTING_DAY }
 );
 
@@ -39,6 +36,12 @@ const extendedMonth = eachDayOfInterval({
   start: startWeeksofMonth[0],
   end: endWeeksofMonth[endWeeksofMonth.length-1],
 });
+
+const weekStructure = eachDayOfInterval({
+  start: extendedMonth[0],
+  end: extendedMonth[6],
+}).map(day => format(day, 'EEEE'))
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -48,7 +51,6 @@ class App extends Component {
         day: day,
         isSelected: format(startingDate, 'd M') === format(day, 'd M'),
         isSelectedMonthName: format(startingDate, 'MMMM') === format(day, 'MMMM'),
-        dayString: format(day, 'd'),
       })),
     };
   }
@@ -63,7 +65,7 @@ class App extends Component {
 
     const newCurrentMonth = currentMonthCopy.map((currentDay) => ({
       ...currentDay,
-      isSelected: currentDay.dayString === id ? true : false,
+      isSelected: format(currentDay.day, 'd MMMM') === id ? true : false,
     }));
 
     this.updateCurrentMonth(newCurrentMonth);
@@ -76,13 +78,10 @@ class App extends Component {
     }
   };
 
-  // this.state.day===this.state.selectedDate? true: false
-
-
   render() {
     // this.updateCurrentMonth();
     // console.log(this.state.currentMonth);
-    // console.log(endWeeksofMonth);
+    // console.log(STARTING_DAY,weekStructure);
     const { selectedDate, currentMonth } = this.state;
     return (
       <>
@@ -92,10 +91,8 @@ class App extends Component {
             dayNumber={format(selectedDate, 'd')}
           />
           <CurrentMonthCard
-            startOfWeeks={startWeeksofMonth}
-            endOfWeeks={endWeeksofMonth}
-            startingDayConst={STARTING_DAY}
-            numberOfWeeks={weeksInMonth}
+            weekStructure={weekStructure}
+            numberOfWeeks={WEEKS_IN_MONTH}
             date={selectedDate}
             monthDays={currentMonth}
             selectDate={this.selectDate}
