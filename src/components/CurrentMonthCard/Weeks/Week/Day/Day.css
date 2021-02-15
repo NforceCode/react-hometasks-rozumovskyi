@@ -1,0 +1,20 @@
+.week-day,
+.month-day,
+.transparent {
+  width: 2ch;
+}
+
+.week-day {
+  color: red;
+  font-weight: bold;
+}
+
+.month-day {
+  color: gray;
+  cursor: pointer;
+}
+
+.transparent {
+  opacity: 0;
+
+}
