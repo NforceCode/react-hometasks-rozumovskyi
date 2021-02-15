@@ -1,7 +1,8 @@
 .week-day,
 .month-day,
 .transparent {
-  width: 2ch;
+  min-width: 2.65ch;
+  border: 3px solid transparent;
 }
 
 .week-day {
@@ -17,4 +18,9 @@
 .transparent {
   opacity: 0;
 
+}
+
+.day-selected {
+  border-radius: 50%;
+  border-color: red;
 }

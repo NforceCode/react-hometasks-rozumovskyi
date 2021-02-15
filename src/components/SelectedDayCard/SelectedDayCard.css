@@ -1,6 +1,11 @@
 .selected-day-card{
+  position: absolute;
+  top: var(--app-border);
+  bottom: var(--app-border);
+  left: var(--app-border);
+  right: 300px;
   width: 100%;
   text-align: center;
-  max-width: 300px;
+  max-width: 290px;
   background-color: aquamarine;
 }
