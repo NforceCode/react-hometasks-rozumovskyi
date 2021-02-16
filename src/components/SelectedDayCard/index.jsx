@@ -7,8 +7,8 @@ const SelectedDayCard = (props) => {
   return (
     
     <div className={cx(styles['selected-day-card'])}>
-      <h2>{weekday}</h2>
-      <p>{dayNumber}</p>
+      <h2 className={cx(styles.weekday)}>{weekday}</h2>
+      <p className={cx(styles.day)}>{dayNumber}</p>
     </div>
   );
 }

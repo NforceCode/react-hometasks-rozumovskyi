@@ -1,11 +1,13 @@
 .current-month-card{
-  position: absolute;
+  /* position: absolute;
   top: var(--app-border);
   bottom: var(--app-border);
   left: 300px;
-  right: var(--app-border);
+  right: var(--app-border); */
+  border-radius: 0 15px 15px 0;
   width: 100%;
   text-align: center;
   max-width: 290px;
   background-color: white;
+  min-height: inherit;
 }
