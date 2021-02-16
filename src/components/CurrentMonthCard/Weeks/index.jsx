@@ -18,7 +18,7 @@ const Weeks = (props) => {
         {weeksArray.map((week, index) => (
           <Week
             weekData={week}
-            key={index}
+            key={renderType === 'daysOfMonth' ? `week${index}` : `weekHeader${index}`}
             weekDataType={renderType}
             selectDate={renderType === 'daysOfMonth' ? selectDate : undefined}
           />
