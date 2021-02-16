@@ -1,8 +1,14 @@
+:root {
+  --day-font-size: 30px;
+  --border-size: 5px;
+}
+
 .week-day,
 .month-day,
 .transparent {
-  min-width: 2.65ch;
-  border: 3px solid transparent;
+  min-width: calc(var(--day-font-size) + 2*var(--border-size));
+  line-height: var(--day-font-size);
+  border: var(--border-size) solid transparent;
 }
 
 .week-day {
