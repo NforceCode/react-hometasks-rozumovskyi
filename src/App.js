@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import styles from './App.module.css';
 import CurrentMonthCard from './components/CurrentMonthCard';
 import SelectedDayCard from './components/SelectedDayCard';
 import {
@@ -78,7 +78,7 @@ class App extends Component {
     const { selectedDate, currentMonth } = this.state;
     return (
       <>
-        <main className='app-container'>
+        <main className={styles['app-container']}>
           <SelectedDayCard
             weekday={format(selectedDate, 'iiii')}
             dayNumber={format(selectedDate, 'd')}

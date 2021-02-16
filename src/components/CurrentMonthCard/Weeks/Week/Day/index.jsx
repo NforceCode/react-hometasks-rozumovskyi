@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './Day.css';
+import styles from './Day.module.css';
+import cx from 'classnames';
 
 class Day extends Component {
   constructor(props) {
@@ -11,17 +12,25 @@ class Day extends Component {
   }
 
   selectDay(e) {
-    const{selectDate} = this.props;
+    const { selectDate } = this.props;
     const { id } = e.target;
     selectDate(id);
   }
 
   render() {
-    const { children, className ,id} = this.props;
+    const { children, className, id ,isSelected} = this.props;
     const { isRendered } = this.state;
+
+    const dayClassNames = cx({
+      [styles['month-day']]: isRendered && className.includes('month-day'),
+      [styles['week-day']]: isRendered && className.includes('week-day'),
+      [styles['day-selected']]: isSelected ,
+      [styles['transparent']]: !isRendered,
+    })
+
     return (
       <p
-        className={isRendered ? className : 'transparent'}
+        className={dayClassNames}
         id={id}
         onClick={
           isRendered && className === 'month-day' ? this.selectDay : undefined

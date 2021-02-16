@@ -27,10 +27,7 @@ const Weeks = (props) => {
     );
   };
 
-  const getWeeksArray = (
-    numberOfWeeks,
-    monthDays,
-  ) => {
+  const getWeeksArray = (numberOfWeeks, monthDays) => {
     let monthDaysCopy = [...monthDays];
 
     const weeksArray = Array(numberOfWeeks);
@@ -41,8 +38,8 @@ const Weeks = (props) => {
       let deleteCount = 0;
 
       for (let j = 0; j < 7; j++) {
-        if(monthDaysCopy[j]) {
-        // для дней недели
+        if (monthDaysCopy[j]) {
+          // для дней недели
           const currentWeekDay = format(monthDaysCopy[j].day, 'EEEE');
 
           if (
@@ -54,15 +51,13 @@ const Weeks = (props) => {
           }
           deleteCount++;
         }
-
       }
 
       weeksArray[i] = weekArray;
       monthDaysCopy = monthDaysCopy.splice(deleteCount);
     }
-    
+
     return weeksArray;
-    
   };
 
   return (

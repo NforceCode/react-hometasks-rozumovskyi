@@ -1,5 +1,5 @@
 import React from 'react';
-import './CurrentMonth.css'
+import styles from './CurrentMonth.module.css'
 
 const CurrentMonth = (props) => {
   const {date: {month, year}} = props;

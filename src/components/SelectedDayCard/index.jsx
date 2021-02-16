@@ -1,11 +1,12 @@
 import React from 'react';
-import './SelectedDayCard.css'
+import styles from './SelectedDayCard.module.css'
+import cx from 'classnames'
 
 const SelectedDayCard = (props) => {
   const {weekday, dayNumber} = props;
   return (
     
-    <div className='selected-day-card'>
+    <div className={cx(styles['selected-day-card'])}>
       <h2>{weekday}</h2>
       <p>{dayNumber}</p>
     </div>
