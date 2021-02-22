@@ -1,0 +1,34 @@
+.day {
+  box-sizing: initial;
+  width: 2ch;
+  text-align: center;
+  border: 4px solid transparent;
+  padding: 6px;
+  cursor: default;
+  font-weight: bold;
+  color: gray;
+
+  &.weekDay {
+    color: red;
+  }
+  
+  &.currentMonthDay {
+    cursor: pointer;
+  }
+
+  &.selectedDay {
+    border-color: red;
+    border-radius: 50%;
+  }
+
+  &.otherMonthDay {
+    opacity: 0.3;
+    cursor: pointer;
+  }
+
+  &.hiddenDay {
+    opacity:0;
+  }
+}
+
+

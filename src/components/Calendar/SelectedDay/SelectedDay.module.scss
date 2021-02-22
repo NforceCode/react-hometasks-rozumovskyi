@@ -1,0 +1,24 @@
+@import './../../../common/styles/constants';
+
+.selectedDay {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: inherit;
+  width: 50%;
+  padding: 20px;
+  background-color: #38CEC4;
+  color:  white;
+  border-radius: $radius 0 0 $radius;
+}
+
+.month {
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.day {
+  font-weight: 300;
+  font-size: 10rem;
+}
