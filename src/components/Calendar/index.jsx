@@ -84,7 +84,7 @@ class Calendar extends Component {
     } = this.state;
 
     return (
-      <>
+      <section className={styles.calendarAppContainer}>
         <section className={styles.calendarContainer}>
           <SelectedDay currentDay={currentDay} options={options} />
           <CalendarBody
@@ -106,7 +106,7 @@ class Calendar extends Component {
           changeStartOfWeek={this.changeStartOfWeek}
           options={options}
         />
-      </>
+      </section>
     );
   }
 }

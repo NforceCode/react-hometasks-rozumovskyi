@@ -1,18 +1,2 @@
-@import './common/styles/constants';
 
-.appContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 1200px;
-  width: 100%;
-  min-height: 350px;
-  background-color: #009991;
-  padding: 10px;
-  border-radius: $radius;
-}
+
