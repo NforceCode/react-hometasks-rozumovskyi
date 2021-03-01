@@ -1,23 +1,19 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-
+import styles from './Header.module.scss';
+import logo from './logo.png';
 class SquadHelpHeader extends Component {
   render () {
     return (
       <nav>
-        <ul>
-          <Link to='/'>
-            <span>HOME</span>
+        <ul className={styles.nav}>
+          <Link to='/squadhelp'>
+            <img src={logo} alt='Squad Help'/>
           </Link>
-          {document.location.pathname === '/' ? (
-            <Link to='/signup'>
-              <span>Sign Up</span>
-            </Link>
-          ) : (
-            <Link to='/'>
-              <span>Login</span>
-            </Link>
-          )}
+
+          <Link to='/squadhelp/signup'>Sign Up</Link>
+
+          <Link to='/squadhelp/login'> Login</Link>
         </ul>
       </nav>
     )
