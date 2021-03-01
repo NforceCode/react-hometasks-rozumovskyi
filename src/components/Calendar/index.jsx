@@ -8,74 +8,71 @@ import ukLocale from 'date-fns/locale/uk';
 import { format, addMonths } from 'date-fns';
 import CalendarControls from './CalendarControls';
 
-const localeMap ={
+const localeMap = {
   en: enLocale,
   ru: ruLocale,
   uk: ukLocale,
-}
+};
 
 class Calendar extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       currentDay: new Date(),
-      options: { 
-        locale: enLocale, 
-        weekStartsOn: 0 
+      options: {
+        locale: enLocale,
+        weekStartsOn: 0,
       },
       weeksInMonths: 6,
       isOtherMonthsRendered: true,
     };
   }
 
-  changeDay = (newDay) => {
+  changeDay = newDay => {
     this.setState((state, props) => ({ currentDay: newDay }));
   };
 
-  changeMonth = (operator) => {
-    if(operator === '>') {
-      this.setState((state, props) => ({ currentDay: addMonths(state.currentDay, 1) }));
-    } else {
-      this.setState((state, props) => ({ currentDay: addMonths(state.currentDay, -1) }));
-    }
+  changeMonth = day => {
+    this.setState((state, props) => ({
+      currentDay: addMonths(state.currentDay, day),
+    }));
   };
 
-  checkMonth = (day) => {
-    const {currentDay,options} = this.state;
+  checkMonth = day => {
+    const { currentDay, options } = this.state;
 
-    if(format(currentDay, 'LLLL', options) === format(day, 'LLLL', options)) {
-      return true;
-    } 
-    return false;
-  }
+    return format(currentDay, 'LLLL', options) === format(day, 'LLLL', options);
+  };
 
-  changeLocale = ({target: {value}}) => {
+  changeLocale = ({ target: { value } }) => {
     this.setState((state, props) => {
-      return {options: { 
-        ...state.options,
-        locale: localeMap[value],
-        
-      }}
-    })
-  }
+      return {
+        options: {
+          ...state.options,
+          locale: localeMap[value],
+        },
+      };
+    });
+  };
 
-  changeStartOfWeek = (number) => {
+  changeStartOfWeek = number => {
     this.setState((state, props) => {
-      return {options: { 
-        ...state.options,
-        weekStartsOn: number,
-        
-      }}
-    })
-  }
+      return {
+        options: {
+          ...state.options,
+          weekStartsOn: number,
+        },
+      };
+    });
+  };
 
   changeMonthRender = () => {
     this.setState((state, props) => {
-      return {isOtherMonthsRendered : !state.isOtherMonthsRendered}
-    })
-  }
-  
-  render() {
+      return { isOtherMonthsRendered: !state.isOtherMonthsRendered };
+    });
+  };
+
+  render () {
     const {
       currentDay,
       weeksInMonths,
@@ -92,16 +89,16 @@ class Calendar extends Component {
             weeksInMonths={weeksInMonths}
             isOtherMonthsRendered={isOtherMonthsRendered}
             changeDay={this.changeDay}
-            changeMonth = {this.changeMonth}
-            checkMonth = {this.checkMonth}
+            changeMonth={this.changeMonth}
+            checkMonth={this.checkMonth}
             options={options}
           />
         </section>
-        <CalendarControls 
-          isChecked={isOtherMonthsRendered} 
+        <CalendarControls
+          isChecked={isOtherMonthsRendered}
           weekStartsOn={options.weekStartsOn}
-          changeDay={this.changeDay} 
-          changeLocale={this.changeLocale} 
+          changeDay={this.changeDay}
+          changeLocale={this.changeLocale}
           changeMonthRender={this.changeMonthRender}
           changeStartOfWeek={this.changeStartOfWeek}
           options={options}

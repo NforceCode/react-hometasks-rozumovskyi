@@ -40,7 +40,7 @@ const CalendarBody = (props) => {
   return (
     
     <div className={styles.calendarWrapper}>
-      <button onClick={()=>{changeMonth('<')}} className={styles.btn}>
+      <button onClick={()=>{changeMonth(-1)}} className={styles.btn}>
         <Icon path={mdiForward} size={1} horizontal/>
       </button>
       <div className={styles.calendarBody}>
@@ -58,7 +58,7 @@ const CalendarBody = (props) => {
           checkMonth={checkMonth}
         />
       </div>
-      <button onClick={()=>{changeMonth('>')}} className={styles.btn}>
+      <button onClick={()=>{changeMonth(1)}} className={styles.btn}>
         <Icon path={mdiForward} size={1}/>
       </button>
     </div>
