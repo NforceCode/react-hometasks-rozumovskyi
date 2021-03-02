@@ -3,6 +3,10 @@ import * as Yup from 'yup';
 export const NAME_SCHEMA = Yup.string()
   .matches(/^[A-Z][a-z]{1,64}$/, 'Please enter valid Name')
   .required();
+  
+export const DISPLAY_NAME_SCHEMA = Yup.string()
+  .matches(/^[A-Z][\w!#$%^&*-]{1,64}$/, 'Please enter valid Display Name')
+  .required();
 
 export const EMAIL_SCHEMA = Yup.string()
   .email('Please enter valid E-mail')
@@ -23,8 +27,11 @@ export const LOG_IN_SCHEMA = Yup.object({
 export const SIGN_UP_SCHEMA = Yup.object({
   firstName: NAME_SCHEMA,
   lastName: NAME_SCHEMA,
+  displayName: DISPLAY_NAME_SCHEMA,
   email: EMAIL_SCHEMA,
   password: PASSWORD_SCHEMA,
-  passwordConfirmation:  Yup.string()
-     .oneOf([Yup.ref('password'), null], 'Passwords must match')
+  passwordConfirmation: Yup.string()
+  .test('passwords-match', 'Passwords must match', function(value){
+    return this.parent.password === value
+  })
 });
