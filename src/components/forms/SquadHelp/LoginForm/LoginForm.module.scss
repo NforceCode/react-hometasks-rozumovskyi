@@ -1,18 +1,8 @@
 @import 'common/styles/templates';
 @import 'common/styles/breakpoints';
 .form {
-  display: flex;
+  @extend %form;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 10px 20px;
-
-  @media screen and (min-width: $md) {
-    
-  }
 }
 
 .input {
