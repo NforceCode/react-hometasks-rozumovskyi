@@ -3,10 +3,6 @@ import LoginForm from 'components/forms/SquadHelp/LoginForm';
 import styles from './SquadHelpLogin.module.scss';
 
 const onLoginSubmit = (values, actions) => {
-  console.group();
-  console.log(values);
-  console.log(actions);
-  console.groupEnd();
   alert(`You will be successfully logged in when this feature will be completed(probably never).
   Your credentials: 
   \temail: ${values.email}

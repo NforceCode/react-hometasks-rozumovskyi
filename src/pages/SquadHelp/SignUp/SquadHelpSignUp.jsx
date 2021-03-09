@@ -10,8 +10,6 @@ const SignUp = props => {
   const  history = useHistory();
 
   const submitSignup = (values, actions) => {
-    console.log(values);
-    console.log(actions);
     history.push('/squadhelp');
     alert(`Signup complete!`);
   }
