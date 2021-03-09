@@ -1,0 +1,84 @@
+@import './constants';
+
+%submitBtn {
+  padding: 10px 20px;
+  background-color: #28d2d0;
+  color: $textColor;
+  border-radius: 10px;
+  text-transform: capitalize;
+  text-align: center;
+  margin: 10px 0;
+  outline: none;
+  border: 1px solid black;
+  max-width: 550px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #13f0ec;
+  }
+}
+
+%borderedBtn {
+  padding: 10px 15px;
+  text-transform: uppercase;
+  margin: 10px 0;
+  text-align: center;
+  background-color: transparent;
+  color: $textColor;
+  border: 1px solid white;
+  border-radius: 5px;
+  font-weight: 600;
+
+  &:hover,
+  &:active {
+    background-color: rgba(255,255,255,0.25);
+  }
+}
+
+%errorPopup {
+  position: absolute;
+  z-index: 10;
+  background-color: rgb(220, 50, 50);
+  border: 2px solid red;
+  color: $textColor;
+  padding: 10px 5px;
+  top: 100%;
+  left: 0;
+  right: 0;
+  border-radius: 10px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    z-index: 9;
+    width: 0;
+    height: 0;
+    border: 0 solid transparent;
+    border-right-width: 0.5rem;
+    border-left-width: 0.5rem;
+    border-bottom: 10px solid red;
+  }
+}
+
+%textHeader {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 30px;
+  color: $textColor;
+}
+
+%inlineLink {
+  color: $textColor;
+}
+
+%form {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  justify-content: center;
+}

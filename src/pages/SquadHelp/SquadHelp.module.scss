@@ -1,5 +1,13 @@
+@import 'common/styles/templates';
+@import 'common/styles/constants';
 .body {
   background-color: dodgerblue;
   min-height: calc(100vh - 29px);
-  color: white;
+  color: $textColor;
+}
+
+.creativeBtnName {
+  text-transform: capitalize;
+  text-decoration: none;
+  @extend %borderedBtn;
 }

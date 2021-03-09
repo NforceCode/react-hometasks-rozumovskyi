@@ -1,0 +1,9 @@
+@import 'common/styles/templates';
+
+.container {
+  position: relative;
+}
+
+.errorMessage {
+  @extend %errorPopup;
+}

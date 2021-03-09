@@ -1,58 +1,57 @@
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
-import Input from '../../Input';
-import Radio from '../../Radio';
-import { SIGN_UP_SCHEMA } from '../../../../utils/validationSchemas';
+import { SIGN_UP_SCHEMA } from 'utils/validationSchemas';
+import InputGroup from 'components/forms/InputGroup';
+import RadioGroup from 'components/forms/RadioGroup';
+import styles from './SignUpForm.module.scss';
+import { Link } from 'react-router-dom';
+import {
+  USER_DATA,
+  SIGN_UP_INITIAL_VALUES,
+  SIGN_UP_DATA,
+} from 'constants/SquareHelp';
+import Checkbox from 'components/forms/Checkbox';
 
-const initialValues = {
-  firstName: '',
-  lastName: '',
-  displayName: '',
-  email: '',
-  password: '',
-  passwordConfirmation: '',
-  role: '',
+const signupRadioGroup = {
+  name: 'userType',
+  settings: USER_DATA.map(user => ({
+    value: user.type,
+    text: `You are ${user.type}`,
+    smallText: user.description,
+  })),
 };
 
 const SignUpForm = props => {
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={SIGN_UP_INITIAL_VALUES}
       validationSchema={SIGN_UP_SCHEMA}
       onSubmit={props.onSubmit}
     >
-      <Form>
-        <Input type='text' name='firstName' placeholder='First name' />
-        <Input type='text' name='lastName' placeholder='Last name' />
-        <Input type='text' name='displayName' placeholder='Display name' />
-        <Input type='text' name='email' placeholder='Email adress' />
-        <Input type='text' name='password' placeholder='Password' />
-        <Input
-          type='text'
-          name='passwordConfirmation'
-          placeholder='Password Confirmation'
+      <Form className={styles.form}>
+        <InputGroup
+          inputData={SIGN_UP_DATA}
+          labelClassNames={styles.inputContainer}
+        />
+        <RadioGroup radioData={signupRadioGroup} />
+
+        <Checkbox
+          name='isSubscribed'
+          description='Allow us to send you spam from time to time'
         />
 
-        <Radio
-          name='role'
-          text='You are buyer'
-          smallText='lorem lorem lorem'
-          value='creative'
+        <Field
+          className={styles.submit}
+          name='submit'
+          type='submit'
+          value='Create account'
         />
-        <Radio
-          name='role'
-          text='You are creator'
-          smallText='merol merol merol'
-          value='buyer'
-        />
-
-        <label>
-          <input type='checkbox' /> Allow us to send you spam
-        </label>
-        <Field name='submit' type='submit' value='Create account' />
         <p>
-          By clicking this button you agree to our <a>Terms of Service</a>{' '}
-          <span style={{ fontSize: '5px' }}>and your soul</span>
+          By clicking this button you agree to our{' '}
+          <Link className={styles.inlineLink} to='/squadhelp/tos'>Terms of Service</Link>{' '}
+          <span style={{ fontSize: '5px' }}>
+            and give us your house, all savings and your soul
+          </span>
         </p>
       </Form>
     </Formik>

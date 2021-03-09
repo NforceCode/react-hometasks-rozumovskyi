@@ -6,10 +6,10 @@ const Radio = props => {
   const { name, text, smallText, value } = props;
   return (
     <label className={styles.radioContainer}>
-      <span>
+      <div>
         <Field type='radio' name={name} value={value} />{' '}
         <span className={styles.text}>{text}</span>
-      </span>
+      </div>
       <span className={styles.smallText}>{smallText}</span>
     </label>
   );

@@ -1,8 +1,11 @@
 .radioContainer {
   border: 1px solid white;
-  padding: 5px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  text-align: left;
+  min-width: 100px;
 }
 
 .text {

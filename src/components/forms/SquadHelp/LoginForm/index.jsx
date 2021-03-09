@@ -1,36 +1,35 @@
-import React, { Component } from 'react'
-import { Field, Form, Formik } from 'formik'
-import Input from './../../Input'
-import { LOG_IN_SCHEMA } from '../../../../utils/validationSchemas'
+import React from 'react';
+import { Field, Form, Formik } from 'formik';
+import Input from 'components/forms/Input';
+import { LOG_IN_SCHEMA } from 'utils/validationSchemas';
+import { Link } from 'react-router-dom';
+import styles from './LoginForm.module.scss';
+import { LOG_IN_INITIAL_VALUES } from 'constants/SquareHelp';
+import Checkbox from 'components/forms/Checkbox';
 
-const initialValues = {
-  email: '',
-  password: ''
-}
 
 const LoginForm = props => {
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={LOG_IN_INITIAL_VALUES}
       validationSchema={LOG_IN_SCHEMA}
       onSubmit={props.onSubmit}
     >
       {() => {
         return (
-          <Form>
-            <Input type='email' placeholder='Email Adress' name='email'/>
-            <Input type='password' placeholder='Password' name='password'/>
-            <div>
-             <label><input type='checkbox'/>Remember me</label>
-             <a href='#'> forgot password</a>
+          <Form className={styles.form}>
+            <Input  type='email' placeholder='Email Adress' name='email' />
+            <Input  type='password' placeholder='Password' name='password' />
+            <div className={styles.loginHelpers}>
+              <Checkbox name='rememberUser' description='Remember Me'/>
+              <Link className={styles.inlineLink} to='/squadhelp/passwordrecovery'> forgot password</Link>
             </div>
-            <Field name='submit' type='submit' value='Login' />
+            <Field className={styles.submit} name='submit' type='submit' value='Login' />
           </Form>
-        )
+        );
       }}
     </Formik>
+  );
+};
 
-  )
-}
-
-export default LoginForm
+export default LoginForm;

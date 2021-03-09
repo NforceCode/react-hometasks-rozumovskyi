@@ -1,0 +1,52 @@
+@import 'common/styles/templates';
+@import 'common/styles/breakpoints';
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 10px 20px;
+
+  @media screen and (min-width: $md) {
+    
+  }
+}
+
+.input {
+  flex: 0.5;
+  max-width: 50%;
+}
+
+.loginHelpers {
+  margin:0 10px 10px;
+  display: flex;
+  width: 100%;
+  max-width: 550px;
+  justify-content: space-between;
+
+  & > * {
+    font-size: 0.75rem;
+
+  }
+
+  @media screen and (max-width: 380px){
+    flex-direction: column;
+     & > label + a {
+       margin-top: 10px;
+     }
+  }
+}
+
+.submit {
+  @extend %submitBtn;
+  width: 100%;
+}
+
+.inlineLink {
+  @extend %inlineLink;
+  text-decoration: none;
+  text-transform: capitalize;
+}

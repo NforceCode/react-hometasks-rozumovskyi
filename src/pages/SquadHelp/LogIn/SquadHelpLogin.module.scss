@@ -1,0 +1,14 @@
+@import 'common/styles/templates';
+
+.container {
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 768px;
+}
+
+.heading {
+  @extend %textHeader;
+}

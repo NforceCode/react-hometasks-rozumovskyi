@@ -3,9 +3,11 @@ import { ErrorMessage, Field } from 'formik';
 import styles from './Input.module.scss';
 import cx from 'classnames';
 
-const Input = ({ name, type, ...rest }) => {
+const Input = ({ name, type,labelClassNames,  ...rest }) => {
+
+  const container = cx (styles.inputContainer, labelClassNames)
   return (
-    <label>
+    <label className={container}>
       <Field name={name}>
         {({ field, form, meta }) => {
           const classNames = cx(styles.input, {
@@ -18,7 +20,7 @@ const Input = ({ name, type, ...rest }) => {
           );
         }}
       </Field>
-      <ErrorMessage name={name} component='span' />
+      <ErrorMessage name={name} component='span' className={styles.errorMessage} />
     </label>
   );
 };

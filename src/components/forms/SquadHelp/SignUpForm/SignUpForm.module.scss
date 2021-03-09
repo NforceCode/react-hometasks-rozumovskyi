@@ -1,0 +1,28 @@
+@import 'common/styles/templates';
+@import 'common/styles/breakpoints';
+
+.form {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 10px 15px;
+  justify-content: space-around;
+
+  .inputContainer {
+    @media screen and  (min-width: $sm) {
+      max-width: 270px;
+    }
+  }
+}
+
+.submit {
+  @extend %submitBtn;
+  width: 100%;
+}
+
+.inlineLink {
+  @extend %inlineLink;
+  
+}
