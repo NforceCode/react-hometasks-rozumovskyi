@@ -1,4 +1,5 @@
 @import 'common/styles/templates';
+@import 'common/styles/constants';
 
 .container {
   margin: 0 auto;
@@ -6,9 +7,11 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 768px;
+  max-width: $formWidth;
 }
 
 .heading {
   @extend %textHeader;
+  padding: 0 $formPadding;
+  margin-bottom: 20px;
 }

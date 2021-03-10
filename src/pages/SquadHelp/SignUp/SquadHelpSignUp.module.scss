@@ -1,17 +1,23 @@
 @import 'common/styles/templates';
+@import 'common/styles/constants';
 
 .container {
-  max-width: 1200px;
+  max-width: $formWidth;
   margin: 0 auto;
   width: 100%;
   text-align: center;
-  max-width: 768px;
+  // padding: $formPadding;
+
 }
 
 .heading {
   @extend %textHeader;
+  padding: 0 $formPadding;
 }
 
 .subHeading {
   text-transform: capitalize;
+  padding: 0 $formPadding;
+  margin-bottom: 20px;
+
 }

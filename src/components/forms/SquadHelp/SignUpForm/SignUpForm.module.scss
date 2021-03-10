@@ -1,14 +1,14 @@
 @import 'common/styles/templates';
+@import 'common/styles/constants';
 @import 'common/styles/breakpoints';
 
 .form {
   @extend %form;
   flex-flow: row wrap;
-  align-items: center;
 
   .inputContainer {
     @media screen and  (min-width: $sm) {
-      max-width: 270px;
+      max-width: ($formWidth / 2) -(2*$formPadding);
     }
   }
 }
