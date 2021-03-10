@@ -7,7 +7,6 @@ import styles from './LoginForm.module.scss';
 import { LOG_IN_INITIAL_VALUES } from 'constants/SquareHelp';
 import Checkbox from 'components/forms/Checkbox';
 
-
 const LoginForm = props => {
   return (
     <Formik
@@ -15,19 +14,23 @@ const LoginForm = props => {
       validationSchema={LOG_IN_SCHEMA}
       onSubmit={props.onSubmit}
     >
-      {() => {
-        return (
-          <Form className={styles.form}>
-            <Input  type='email' placeholder='Email Adress' name='email' />
-            <Input  type='password' placeholder='Password' name='password' />
-            <div className={styles.loginHelpers}>
-              <Checkbox name='rememberUser' description='Remember Me'/>
-              <Link className={styles.inlineLink} to='/squadhelp/passwordrecovery'> forgot password</Link>
-            </div>
-            <Field className={styles.submit} name='submit' type='submit' value='Login' />
-          </Form>
-        );
-      }}
+      <Form className={styles.form}>
+        <Input type='email' placeholder='Email Adress' name='email' />
+        <Input type='password' placeholder='Password' name='password' />
+        <div className={styles.loginHelpers}>
+          <Checkbox name='rememberUser' description='Remember Me' />
+          <Link className={styles.inlineLink} to='/squadhelp/passwordrecovery'>
+            {' '}
+            forgot password
+          </Link>
+        </div>
+        <Field
+          className={styles.submit}
+          name='submit'
+          type='submit'
+          value='Login'
+        />
+      </Form>
     </Formik>
   );
 };
