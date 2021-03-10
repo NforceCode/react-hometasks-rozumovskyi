@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
-import SquadHelpHeader from 'components/forms/SquadHelp/Header';
+import SquadHelpHeader from 'pages/SquadHelp/Header';
 import Login from './LogIn/SquadHelpLogin';
 import SignUp from './SignUp/SquadHelpSignUp';
 import styles from './SquadHelp.module.scss';
